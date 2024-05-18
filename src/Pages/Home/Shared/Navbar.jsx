@@ -1,5 +1,4 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const Navbar = () => {
   const menu = (
@@ -7,40 +6,68 @@ export const Navbar = () => {
       <li>
         <NavLink
           to="/"
-          className={({ isActive }) => (isActive ? "bg-lime-500" : "")}
+          className={({ isActive }) =>
+            isActive
+              ? "text-lime-500 focus:text-lime-500 uppercase font-bold"
+              : "uppercase font-bold text-white"
+          }
         >
           Home
         </NavLink>
       </li>
       <li>
         <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? "bg-lime-500" : "")}
+          to="/contact"
+          className={({ isActive }) =>
+            isActive
+              ? "text-lime-500 focus:text-lime-500 uppercase font-bold"
+              : "uppercase font-bold text-white"
+          }
         >
-          Home
+          Contact Us
         </NavLink>
       </li>
       <li>
         <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? "bg-lime-500" : "")}
+          to="/dashboard"
+          className={({ isActive }) =>
+            isActive
+              ? "text-lime-500 focus:text-lime-500 uppercase font-bold"
+              : "uppercase font-bold text-white"
+          }
         >
-          Home
+          Dashboard
         </NavLink>
       </li>
       <li>
         <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? "bg-lime-500" : "")}
+          to="/menu"
+          className={({ isActive }) =>
+            isActive
+              ? "text-lime-500 focus:text-lime-500 uppercase font-bold"
+              : "uppercase font-bold text-white"
+          }
         >
-          Home
+          Our menu
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/shop"
+          className={({ isActive }) =>
+            isActive
+              ? "text-lime-500 focus:text-lime-500 uppercase font-bold"
+              : "uppercase font-bold text-white"
+          }
+        >
+          Our shop
         </NavLink>
       </li>
     </>
   );
   return (
     <div>
-      <div className="navbar fixed z-10">
+      <div className="navbar bg-black bg-opacity-30 fixed z-10">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -66,13 +93,18 @@ export const Navbar = () => {
               {menu}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+
+          <Link className=" font-bold text-2xl bg-gradient-to-r from-[white]  to-[#888787] inline-block text-transparent bg-clip-text">
+            ElegacneFood
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{menu}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <a className="btn btn-md btn-ghost text-white font-bold text-lg">
+            Login
+          </a>
         </div>
       </div>
     </div>
