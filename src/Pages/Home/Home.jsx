@@ -3,6 +3,7 @@ import { MenuCarasoul } from "./MenuCarasoul/MenuCarasoul";
 import { ChefService } from "./ChefService";
 import { HomeMenu } from "./HomeMenu";
 import { ChefRecommand } from "./ChefRecommand";
+import { Featured } from "./Featured";
 
 export const Home = () => {
   return (
@@ -15,6 +16,7 @@ export const Home = () => {
         <h1 className="font-bold text-3xl">CAll US 01684883865</h1>
       </div>
       <ChefRecommand />
+      <Featured />
     </div>
   );
 };
