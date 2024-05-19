@@ -4,10 +4,14 @@ import { ChefService } from "./ChefService";
 import { HomeMenu } from "./HomeMenu";
 import { ChefRecommand } from "./ChefRecommand";
 import { Featured } from "./Featured";
+import { Helmet } from "react-helmet-async";
 
 export const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>Elegance | Home</title>
+      </Helmet>
       <Carasoul />
       <MenuCarasoul />
       <ChefService />
