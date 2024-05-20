@@ -5,6 +5,7 @@ import { OurMenu } from "../Pages/OurMenu/OurMenu";
 import { OurShop } from "../Pages/OurShop/OurShop";
 import { Login } from "../Pages/Login";
 import { Registration } from "../Pages/Registration";
+import { ContactUs } from "../Pages/ContactUs";
 
 export const Routing = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const Routing = createBrowserRouter([
       {
         path: "/reg",
         element: <Registration />,
+      },
+      {
+        path: "/contact",
+        element: <ContactUs />,
       },
     ],
   },
