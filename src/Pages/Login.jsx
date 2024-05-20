@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import bg from "../assets/others/authentication.png";
 import im from "../assets/others/authentication2.png";
 
@@ -58,6 +59,12 @@ export const Login = () => {
                 <button className="btn bg-[#D1A054] text-white">Login</button>
               </div>
             </form>
+            <h1 className="text-center text-[#D1A054]">
+              New here?{" "}
+              <Link to="/reg" className="cursor-pointer font-bold">
+                Create An Account
+              </Link>
+            </h1>
           </div>
         </div>
       </div>
