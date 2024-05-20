@@ -1,8 +1,29 @@
 import { Link } from "react-router-dom";
 import bg from "../assets/others/authentication.png";
 import im from "../assets/others/authentication2.png";
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  LoadCanvasTemplateNoReload,
+  validateCaptcha,
+} from "react-simple-captcha";
+import { useEffect, useRef, useState } from "react";
 
 export const Login = () => {
+  const capthcha = useRef(null);
+  const [isDisable, setisDisable] = useState(true);
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+  const handleValidate = () => {
+    console.log();
+
+    if (validateCaptcha(capthcha.current.value) == true) {
+      setisDisable(false);
+    } else {
+      setisDisable(true);
+    }
+  };
   return (
     <div style={{ backgroundImage: `url(${bg})` }}>
       <div className="hero min-h-screen ">
@@ -11,12 +32,13 @@ export const Login = () => {
             <img src={im} alt="" />
           </div>
           <div className="card shrink-0 w-full max-w-sm  ">
-            <form className="card-body">
+            <form className="card-body bg-white">
               <h1 className="text-3xl font-bold text-center">Login</h1>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
+
                 <input
                   type="email"
                   placeholder="email"
@@ -36,27 +58,29 @@ export const Login = () => {
                 />
               </div>
               <div className="form-control">
-                <input
-                  type="text"
-                  placeholder="captha"
-                  className="input input-bordered"
-                />
                 <label className="label">
-                  <span className="label-text text-blue-500">
-                    Reload captcha
-                  </span>
+                  <LoadCanvasTemplate />
                 </label>
               </div>
               <div className="form-control">
                 <input
+                  ref={capthcha}
                   type="text"
                   placeholder="Type Here"
                   className="input input-bordered"
                   required
                 />
               </div>
+              <button onClick={handleValidate} className="btn btn-xs">
+                Validate
+              </button>
               <div className="form-control mt-6">
-                <button className="btn bg-[#D1A054] text-white">Login</button>
+                <button
+                  disabled={isDisable}
+                  className="btn bg-[#D1A054] text-white"
+                >
+                  Login
+                </button>
               </div>
             </form>
             <h1 className="text-center text-[#D1A054]">
