@@ -3,13 +3,15 @@ import "react-tabs/style/react-tabs.css";
 import { Cover } from "../Home/Shared/Cover";
 import bg from "../../assets/shop/banner2.jpg";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useMenu } from "./../../Hooks/useMenu";
-import { FoodCard } from "../../Component/FoodCard";
+
 import { OrderTab } from "./OrderTab";
 export const OurShop = () => {
+  const categories = ["salad", "Pizza", "Soup", "DESSERTS"];
   const { category } = useParams();
-  const [tabindex, settabindex] = useState(1);
+  const initialIndex = categories.indexOf(category);
+  const [tabindex, settabindex] = useState(initialIndex);
 
   const [menu] = useMenu();
 

@@ -27,7 +27,7 @@ export const OurMenu = () => {
       <MenuCategory item={offered} />
       <MenuCategory im={desertbg} title="DESSERTS" item={dessert} />
       <MenuCategory im={pizzabg} title="Pizza" item={pizza} />
-      <MenuCategory im={saladbg} title="Salad" item={salad} />
+      <MenuCategory im={saladbg} title="salad" item={salad} />
       <MenuCategory im={soupbg} title="Soup" item={soup} />
     </div>
   );
