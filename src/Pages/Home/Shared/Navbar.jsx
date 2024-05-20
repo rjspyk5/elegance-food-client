@@ -102,9 +102,12 @@ export const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{menu}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn btn-md btn-ghost text-white font-bold text-lg">
+          <Link
+            to="/login"
+            className="btn btn-md btn-ghost text-white font-bold text-lg"
+          >
             Login
-          </a>
+          </Link>
         </div>
       </div>
     </div>
