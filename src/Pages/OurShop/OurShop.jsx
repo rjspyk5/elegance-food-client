@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useMenu } from "./../../Hooks/useMenu";
 import { FoodCard } from "../../Component/FoodCard";
+import { OrderTab } from "./OrderTab";
 export const OurShop = () => {
   const { category } = useParams();
   const [tabindex, settabindex] = useState(1);
@@ -28,26 +29,16 @@ export const OurShop = () => {
           <Tab>Drink</Tab>
         </TabList>
         <TabPanel>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {salad.map((el) => (
-              <FoodCard key={el._id} item={el} />
-            ))}
-          </div>
+          <OrderTab iteam={salad} />
         </TabPanel>
         <TabPanel>
-          {pizza.map((el) => (
-            <FoodCard key={el._id} item={el} />
-          ))}
+          <OrderTab iteam={pizza} />
         </TabPanel>
         <TabPanel>
-          {soup.map((el) => (
-            <FoodCard key={el._id} item={el} />
-          ))}
+          <OrderTab iteam={soup} />
         </TabPanel>
         <TabPanel>
-          {drinks.map((el) => (
-            <FoodCard key={el._id} item={el} />
-          ))}
+          <OrderTab iteam={drinks} />
         </TabPanel>
       </Tabs>
     </div>
