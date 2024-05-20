@@ -53,7 +53,7 @@ export const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/shop"
+          to="/shop/salad"
           className={({ isActive }) =>
             isActive
               ? "text-lime-500 focus:text-lime-500 uppercase font-bold"
