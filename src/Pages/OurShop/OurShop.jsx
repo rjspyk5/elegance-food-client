@@ -1,6 +1,7 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { Cover } from "../Home/Shared/Cover";
+import bg from "../../assets/shop/banner2.jpg";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 export const OurShop = () => {
@@ -8,7 +9,7 @@ export const OurShop = () => {
   const [tabindex, settabindex] = useState(1);
   return (
     <div>
-      <Cover title={`Our ${category}`} />
+      <Cover title={`Order Food`} im={bg} />
       <Tabs defaultIndex={tabindex} onSelect={(index) => settabindex(index)}>
         <TabList>
           <Tab>Salad</Tab>
