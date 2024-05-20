@@ -1,23 +1,23 @@
 import React from "react";
 
-export const FoodCard = ({ item }) => {
+export const FoodCard = ({ item: { name, price, image, recipe } }) => {
   return (
-    <div>
+    <div className="relative">
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
         <figure>
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-            alt="Shoes"
-          />
+          <img src={image} alt="Shoes" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">Shoes!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+          <h2 className="text-2xl font-bold text-center">{name}</h2>
+          <p>{recipe}</p>
+          <div className="flex justify-center">
+            <button className="btn btn-primary">Add to Cart</button>
           </div>
         </div>
       </div>
+      <p className="absolute right-7 top-3 px-5 py-1 text-white bg-black">
+        ${price}
+      </p>
     </div>
   );
 };
