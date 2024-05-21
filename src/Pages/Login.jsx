@@ -16,8 +16,6 @@ export const Login = () => {
     loadCaptchaEnginge(6);
   }, []);
   const handleValidate = () => {
-    console.log();
-
     if (validateCaptcha(capthcha.current.value) == true) {
       setisDisable(false);
     } else {
