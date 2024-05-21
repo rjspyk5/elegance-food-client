@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 import bg from "../assets/others/authentication.png";
 import im from "../assets/others/authentication2.png";
 import { useForm } from "react-hook-form";
+import { useAuth } from "./../Hooks/useAuth";
 export const Registration = () => {
+  const { createUser } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -10,7 +13,11 @@ export const Registration = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    createUser(data.email, data.password)
+      .then(() => alert("sucessfully signup"))
+      .catch((er) => console.log(er));
+  };
 
   return (
     <div>
@@ -29,11 +36,13 @@ export const Registration = () => {
                   </label>
                   <input
                     {...register("name")}
+                    aria-invalid={errors.name ? "true" : "false"}
                     type="text"
                     placeholder="Name"
                     className="input input-bordered"
                   />
                 </div>
+
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
@@ -53,14 +62,28 @@ export const Registration = () => {
                     <span className="label-text">Password</span>
                   </label>
                   <input
-                    {...register("password", { required: true, minLength: 6 })}
+                    {...register("password", {
+                      required: true,
+                      minLength: 6,
+                      pattern: /^(?:(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*)$/,
+                    })}
                     type="password"
                     placeholder="password"
                     className="input input-bordered"
                     required
                   />
-                  {errors.password && (
+                  {errors.password?.type === "required" && (
                     <span className="text-red-500">This field is required</span>
+                  )}
+                  {errors.password?.type === "minLength" && (
+                    <span className="text-red-500">
+                      Minimum length has to be 6
+                    </span>
+                  )}
+                  {errors.password?.type === "pattern" && (
+                    <span className="text-red-500">
+                      Minimum one uppercase one lowercase and special char
+                    </span>
                   )}
                 </div>
 
