@@ -4,7 +4,6 @@ import im from "../assets/others/authentication2.png";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
-  LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
 import { useEffect, useRef, useState } from "react";
@@ -12,6 +11,8 @@ import { useEffect, useRef, useState } from "react";
 export const Login = () => {
   const capthcha = useRef(null);
   const [isDisable, setisDisable] = useState(true);
+
+  // Captcha generator
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);

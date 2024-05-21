@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 import bg from "../assets/others/authentication.png";
 import im from "../assets/others/authentication2.png";
-
+import { useForm } from "react-hook-form";
 export const Registration = () => {
+  const {
+    register,
+    handleSubmit,
+
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => console.log(data);
+
   return (
     <div>
       <div style={{ backgroundImage: `url(${bg})` }}>
@@ -12,17 +21,17 @@ export const Registration = () => {
               <img src={im} alt="" />
             </div>
             <div className="card shrink-0 w-full max-w-sm  ">
-              <form className="card-body">
+              <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                 <h1 className="text-3xl font-bold text-center">Sign Up</h1>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Name</span>
                   </label>
                   <input
+                    {...register("name")}
                     type="text"
                     placeholder="Name"
                     className="input input-bordered"
-                    required
                   />
                 </div>
                 <div className="form-control">
@@ -30,22 +39,29 @@ export const Registration = () => {
                     <span className="label-text">Email</span>
                   </label>
                   <input
+                    {...register("email", { required: true })}
                     type="email"
                     placeholder="email"
                     className="input input-bordered"
-                    required
                   />
+                  {errors.email && (
+                    <span className="text-red-500">This field is required</span>
+                  )}
                 </div>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Password</span>
                   </label>
                   <input
+                    {...register("password", { required: true, minLength: 6 })}
                     type="password"
                     placeholder="password"
                     className="input input-bordered"
                     required
                   />
+                  {errors.password && (
+                    <span className="text-red-500">This field is required</span>
+                  )}
                 </div>
 
                 <div className="form-control mt-6">
