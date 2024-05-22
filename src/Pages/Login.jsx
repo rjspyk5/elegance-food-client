@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bg from "../assets/others/authentication.png";
 import im from "../assets/others/authentication2.png";
 import {
@@ -7,17 +7,31 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { useEffect, useRef, useState } from "react";
+import { useAuth } from "../Hooks/useAuth";
 
 export const Login = () => {
   const capthcha = useRef(null);
   const [isDisable, setisDisable] = useState(true);
+  const { logIn } = useAuth();
+  const navigate = useNavigate();
 
   // Captcha generator
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
-  const handleValidate = () => {
-    if (validateCaptcha(capthcha.current.value) == true) {
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const pass = e.target.pass.value;
+
+    logIn(email, pass)
+      .then(() => navigate("/"))
+      .catch((er) => alert(er));
+  };
+
+  const handleValidate = (e) => {
+    if (validateCaptcha(e.target.value) == true) {
       setisDisable(false);
     } else {
       setisDisable(true);
@@ -31,7 +45,7 @@ export const Login = () => {
             <img src={im} alt="" />
           </div>
           <div className="card shrink-0 w-full max-w-sm  ">
-            <form className="card-body bg-white">
+            <form onSubmit={handleLogin} className="card-body bg-white">
               <h1 className="text-3xl font-bold text-center">Login</h1>
               <div className="form-control">
                 <label className="label">
@@ -39,6 +53,7 @@ export const Login = () => {
                 </label>
 
                 <input
+                  name="email"
                   type="email"
                   placeholder="email"
                   className="input input-bordered"
@@ -50,6 +65,7 @@ export const Login = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
+                  name="pass"
                   type="password"
                   placeholder="password"
                   className="input input-bordered"
@@ -63,19 +79,18 @@ export const Login = () => {
               </div>
               <div className="form-control">
                 <input
-                  ref={capthcha}
+                  onBlur={handleValidate}
+                  name="captacha"
                   type="text"
                   placeholder="Type Here"
                   className="input input-bordered"
-                  required
                 />
               </div>
-              <button onClick={handleValidate} className="btn btn-xs">
-                Validate
-              </button>
+
               <div className="form-control mt-6">
                 <button
                   disabled={isDisable}
+                  type="submit"
                   className="btn bg-[#D1A054] text-white"
                 >
                   Login
