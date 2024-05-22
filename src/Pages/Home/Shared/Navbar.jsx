@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../../../Hooks/useAuth";
-
+import { FaCartShopping } from "react-icons/fa6";
 export const Navbar = () => {
   const { user, logOut } = useAuth();
   const handleLogOut = () => logOut().then(() => alert("logout sucess"));
@@ -64,6 +64,12 @@ export const Navbar = () => {
           }
         >
           Our shop
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/cart">
+          <FaCartShopping />
+          <div className="badge badge-secondary">+99</div>
         </NavLink>
       </li>
     </>
