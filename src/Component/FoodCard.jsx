@@ -1,4 +1,4 @@
-import React from "react";
+import Swal from "sweetalert2";
 import { useAuth } from "../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAxiosSequre } from "../Hooks/useAxiosSequre";
@@ -20,7 +20,14 @@ export const FoodCard = ({ item }) => {
       };
       axiosSequre
         .post("/carts", cartitem)
-        .then((res) => console.log(res.data))
+        .then((res) => {
+          if (res.data.insertedId) {
+            Swal.fire({
+              text: `${name} added to cart successfully`,
+              icon: "success",
+            });
+          }
+        })
         .catch((er) => console.log(er));
     } else {
       navigate("/login", { state: { from: location } });
