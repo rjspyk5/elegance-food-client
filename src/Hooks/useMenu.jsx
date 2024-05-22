@@ -4,7 +4,7 @@ export const useMenu = () => {
   const [menu, setmenu] = useState([]);
   const [loading, setloading] = useState(true);
   useEffect(() => {
-    fetch(`/menu.json`)
+    fetch(`http://localhost:5000/menu`)
       .then((res) => res.json())
       .then((res) => {
         setmenu(res);
