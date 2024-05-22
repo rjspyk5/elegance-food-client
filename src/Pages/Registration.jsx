@@ -3,6 +3,7 @@ import bg from "../assets/others/authentication.png";
 import im from "../assets/others/authentication2.png";
 import { useForm } from "react-hook-form";
 import { useAuth } from "./../Hooks/useAuth";
+import Swal from "sweetalert2";
 export const Registration = () => {
   const { createUser, updateUser, logOut } = useAuth();
   const navigate = useNavigate();
@@ -19,6 +20,10 @@ export const Registration = () => {
       .then(() => {
         updateUser(data?.name)
           .then(() => {
+            Swal.fire({
+              text: "Registration Successfully and now you can login",
+              icon: "success",
+            });
             reset();
             logOut().then(() => navigate("/login"));
           })
