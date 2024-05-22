@@ -1,21 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bg from "../assets/others/authentication.png";
 import im from "../assets/others/authentication2.png";
 import { useForm } from "react-hook-form";
 import { useAuth } from "./../Hooks/useAuth";
 export const Registration = () => {
-  const { createUser } = useAuth();
+  const { createUser, updateUser, logOut } = useAuth();
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
-
+    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
     createUser(data.email, data.password)
-      .then(() => alert("sucessfully signup"))
+      .then(() => {
+        updateUser(data?.name)
+          .then(() => {
+            reset();
+            logOut().then(() => navigate("/login"));
+          })
+          .catch((er) => alert(er));
+      })
       .catch((er) => console.log(er));
   };
 

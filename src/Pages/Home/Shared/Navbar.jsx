@@ -110,6 +110,7 @@ export const Navbar = () => {
               onClick={handleLogOut}
               className="btn btn-md btn-ghost bg-pink-600 text-white font-bold text-lg"
             >
+              <p>{user.displayName}</p>
               Logout
             </Link>
           ) : (

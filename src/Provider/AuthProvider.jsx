@@ -31,10 +31,9 @@ export const AuthProvider = ({ children }) => {
     setloading(true);
     return signInWithEmailAndPassword(auth, email, pass);
   };
-  const updateUser = (name, photo) => {
-    updateProfile(auth.currentUser, {
+  const updateUser = (name) => {
+    return updateProfile(auth.currentUser, {
       displayName: name,
-      photoURL: photo,
     });
   };
 
