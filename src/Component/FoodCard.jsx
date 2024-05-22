@@ -2,9 +2,11 @@ import Swal from "sweetalert2";
 import { useAuth } from "../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAxiosSequre } from "../Hooks/useAxiosSequre";
+import { useCart } from "../Hooks/useCart";
 
 export const FoodCard = ({ item }) => {
   const location = useLocation();
+  const [, refetch] = useCart();
   const { name, price, image, recipe } = item;
   const axiosSequre = useAxiosSequre();
   const navigate = useNavigate();
@@ -22,6 +24,7 @@ export const FoodCard = ({ item }) => {
         .post("/carts", cartitem)
         .then((res) => {
           if (res.data.insertedId) {
+            refetch();
             Swal.fire({
               text: `${name} added to cart successfully`,
               icon: "success",

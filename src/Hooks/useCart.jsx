@@ -6,12 +6,12 @@ import { useAuth } from "./useAuth";
 export const useCart = () => {
   const { user } = useAuth();
   const axiosSequre = useAxiosSequre();
-  const { data: cart = [] } = useQuery({
+  const { refetch, data: cart = [] } = useQuery({
     queryKey: ["cart", user?.email],
     queryFn: async () => {
       const res = await axiosSequre.get(`/carts?email=${user.email}`);
       return res.data;
     },
   });
-  return [cart];
+  return [cart, refetch];
 };
