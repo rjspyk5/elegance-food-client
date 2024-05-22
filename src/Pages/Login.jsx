@@ -11,7 +11,8 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../Hooks/useAuth";
 
 export const Login = () => {
-  const { state } = useLocation();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const [isDisable, setisDisable] = useState(true);
   const { logIn } = useAuth();
@@ -34,7 +35,7 @@ export const Login = () => {
           icon: "success",
         });
 
-        state?.pathname ? navigate(`${state.pathname}`) : navigate("/");
+        navigate(from);
       })
       .catch((er) => alert(er));
   };

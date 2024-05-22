@@ -1,18 +1,29 @@
 import React from "react";
 import { useAuth } from "../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAxiosSequre } from "../Hooks/useAxiosSequre";
 
 export const FoodCard = ({ item }) => {
-  const { pathname } = useLocation();
-
+  const location = useLocation();
   const { name, price, image, recipe } = item;
+  const axiosSequre = useAxiosSequre();
   const navigate = useNavigate();
   const { user } = useAuth();
   const handleAddCart = () => {
     if (user && user.email) {
-      console.log(item);
+      const cartitem = {
+        menuId: item._id,
+        email: user.email,
+        name,
+        image,
+        price,
+      };
+      axiosSequre
+        .post("/carts", cartitem)
+        .then((res) => console.log(res.data))
+        .catch((er) => console.log(er));
     } else {
-      navigate("/login", { state: { pathname } });
+      navigate("/login", { state: { from: location } });
     }
   };
   return (
