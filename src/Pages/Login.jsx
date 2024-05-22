@@ -1,18 +1,18 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import bg from "../assets/others/authentication.png";
 import im from "../assets/others/authentication2.png";
+import Swal from "sweetalert2";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../Hooks/useAuth";
 
 export const Login = () => {
   const { state } = useLocation();
 
-  const capthcha = useRef(null);
   const [isDisable, setisDisable] = useState(true);
   const { logIn } = useAuth();
   const navigate = useNavigate();
@@ -28,9 +28,14 @@ export const Login = () => {
     const pass = e.target.pass.value;
 
     logIn(email, pass)
-      .then(() =>
-        state?.pathname ? navigate(`${state.pathname}`) : navigate("/")
-      )
+      .then(() => {
+        Swal.fire({
+          text: "Login Successfully",
+          icon: "success",
+        });
+
+        state?.pathname ? navigate(`${state.pathname}`) : navigate("/");
+      })
       .catch((er) => alert(er));
   };
 
