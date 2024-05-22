@@ -1,8 +1,10 @@
 import React from "react";
 import { useAuth } from "../Hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const FoodCard = ({ item }) => {
+  const { pathname } = useLocation();
+
   const { name, price, image, recipe } = item;
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -10,7 +12,7 @@ export const FoodCard = ({ item }) => {
     if (user && user.email) {
       console.log(item);
     } else {
-      navigate("/login");
+      navigate("/login", { state: { pathname } });
     }
   };
   return (
