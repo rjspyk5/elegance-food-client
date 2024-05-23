@@ -1,4 +1,17 @@
-export const CartItem = ({ item: { image, name, price } }) => {
+import { useAxiosSequre } from "../Hooks/useAxiosSequre";
+import { useCart } from "../Hooks/useCart";
+
+export const CartItem = ({ item: { image, name, price, _id } }) => {
+  const [, refetch] = useCart();
+  const axiosSequre = useAxiosSequre();
+  const handleDelete = () => {
+    axiosSequre
+      .delete(`/carts/${_id}`)
+      .then(() => {
+        refetch();
+      })
+      .catch((er) => console.log(er));
+  };
   return (
     <tr>
       <td>
@@ -11,14 +24,16 @@ export const CartItem = ({ item: { image, name, price } }) => {
         </div>
       </td>
       <td>
-        {" "}
         <div>
           <div className="font-bold">{name}</div>
         </div>
       </td>
       <td>{price}</td>
       <td>
-        <button className="btn btn-ghost bg-red-500 text-white btn-xs">
+        <button
+          onClick={handleDelete}
+          className="btn btn-ghost bg-red-500 text-white btn-xs"
+        >
           Delete From Cart
         </button>
       </td>
