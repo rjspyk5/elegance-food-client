@@ -7,6 +7,7 @@ import { Login } from "../Pages/Login";
 import { Registration } from "../Pages/Registration";
 import { ContactUs } from "../Pages/ContactUs";
 import { Cart } from "../Pages/Cart";
+import { Admin } from "../Pages/Admin";
 
 export const Routing = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ export const Routing = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
       },
     ],
   },
