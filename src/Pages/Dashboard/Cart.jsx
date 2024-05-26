@@ -1,10 +1,9 @@
-import React from "react";
-import { useCart } from "../Hooks/useCart";
-import { CartItem } from "../Component/CartItem";
+import { useCart } from "../../Hooks/useCart";
+import { CartItem } from "../../Component/CartItem";
 
 export const Cart = () => {
   const [cart] = useCart();
-  console.log(cart);
+
   return (
     <div>
       <div className="overflow-x-auto">

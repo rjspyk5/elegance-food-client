@@ -6,8 +6,8 @@ import { OurShop } from "../Pages/OurShop/OurShop";
 import { Login } from "../Pages/Login";
 import { Registration } from "../Pages/Registration";
 import { ContactUs } from "../Pages/ContactUs";
-import { Cart } from "../Pages/Cart";
-import { Admin } from "../Pages/Admin";
+import { Cart } from "../Pages/Dashboard/Cart";
+import { Admin } from "../Pages/Dashboard/Admin";
 
 export const Routing = createBrowserRouter([
   {
@@ -38,14 +38,16 @@ export const Routing = createBrowserRouter([
         path: "/contact",
         element: <ContactUs />,
       },
-      {
-        path: "/cart",
-        element: <Cart />,
-      },
     ],
   },
   {
     path: "dashboard",
     element: <Admin />,
+    children: [
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+    ],
   },
 ]);

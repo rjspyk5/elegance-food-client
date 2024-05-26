@@ -70,7 +70,7 @@ export const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/cart">
+        <NavLink to="/dashboard/cart">
           <FaCartShopping />
           <div className="badge badge-secondary">{cartsData.length}</div>
         </NavLink>
