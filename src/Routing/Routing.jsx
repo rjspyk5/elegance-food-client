@@ -42,10 +42,10 @@ export const Routing = createBrowserRouter([
         path: "/cart",
         element: <Cart />,
       },
-      {
-        path: "/admin",
-        element: <Admin />,
-      },
     ],
+  },
+  {
+    path: "dashboard",
+    element: <Admin />,
   },
 ]);
