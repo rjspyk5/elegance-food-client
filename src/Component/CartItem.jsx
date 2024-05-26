@@ -1,7 +1,7 @@
 import { useAxiosSequre } from "../Hooks/useAxiosSequre";
 import { useCart } from "../Hooks/useCart";
 
-export const CartItem = ({ item: { image, name, price, _id } }) => {
+export const CartItem = ({ item: { image, name, price, _id }, idx }) => {
   const [, refetch] = useCart();
   const axiosSequre = useAxiosSequre();
   const handleDelete = () => {
@@ -14,6 +14,7 @@ export const CartItem = ({ item: { image, name, price, _id } }) => {
   };
   return (
     <tr>
+      <td>{idx + 1}</td>
       <td>
         <div className="flex items-center gap-3">
           <div className="avatar">

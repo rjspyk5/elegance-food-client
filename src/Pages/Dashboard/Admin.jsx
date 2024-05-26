@@ -71,9 +71,36 @@ export const Admin = () => {
               MyCart
             </NavLink>
           </li>
+          <div className="divider"></div>
+          <li className="w-full">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-white bg-blue-300 flex items-center gap-3"
+                  : " gap-3 flex items-center"
+              }
+            >
+              <FaHome />
+              Home
+            </NavLink>
+          </li>
+          <li className="w-full">
+            <NavLink
+              to="/shop/salad"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-white bg-blue-300 flex items-center gap-3"
+                  : " gap-3 flex items-center"
+              }
+            >
+              <FaShoppingCart />
+              Menu
+            </NavLink>
+          </li>
         </ul>
       </div>
-      <div className="flex-1">
+      <div className="flex-1 p-8">
         <Outlet />
       </div>
     </div>
