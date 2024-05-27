@@ -1,8 +1,16 @@
+import { FaTrash } from "react-icons/fa";
 import { useLoadUser } from "../../Hooks/useLoadUser";
+import { useAxiosSequre } from "../../Hooks/useAxiosSequre";
 
 export const AllUser = () => {
   const { user, loading, refetch } = useLoadUser();
-  console.log(user);
+  const axiosSequre = useAxiosSequre();
+  const handleDelete = (id) => {
+    axiosSequre.delete(`/user/${id}`).then((res) => {
+      refetch();
+      console.log(res);
+    });
+  };
   return (
     <div>
       <h1 className="font-bold text-2xl text-center">Manage User</h1>
@@ -26,7 +34,11 @@ export const AllUser = () => {
                   <td>{el.displayName}</td>
                   <td>{el.email}</td>
                   <td>Blue</td>
-                  <td>Blue</td>
+                  <td>
+                    <button onClick={() => handleDelete(el._id)}>
+                      <FaTrash />
+                    </button>
+                  </td>
                 </tr>
               );
             })}
