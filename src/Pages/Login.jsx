@@ -9,6 +9,7 @@ import {
 } from "react-simple-captcha";
 import { useEffect, useState } from "react";
 import { useAuth } from "../Hooks/useAuth";
+import { GoogleLogin } from "../Component/GoogleLogin";
 
 export const Login = () => {
   const location = useLocation();
@@ -105,6 +106,10 @@ export const Login = () => {
                 >
                   Login
                 </button>
+                <div className="divider">Or Login With</div>
+                <div className="mt-5 flex justify-center">
+                  <GoogleLogin />
+                </div>
               </div>
             </form>
             <h1 className="text-center text-[#D1A054]">

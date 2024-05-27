@@ -3,6 +3,7 @@ import bg from "../assets/others/authentication.png";
 import im from "../assets/others/authentication2.png";
 import { useForm } from "react-hook-form";
 import { useAuth } from "./../Hooks/useAuth";
+import { GoogleLogin } from "../Component/GoogleLogin";
 import Swal from "sweetalert2";
 import { useAxiosPublic } from "../Hooks/useAxiosPublic";
 export const Registration = () => {
@@ -112,6 +113,7 @@ export const Registration = () => {
                 <div className="form-control mt-6">
                   <button className="btn bg-[#D1A054] text-white">Login</button>
                 </div>
+                <GoogleLogin />
               </form>
               <h1 className="text-center text-[#D1A054]">
                 Already Have An Account?{" "}
