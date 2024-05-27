@@ -4,10 +4,11 @@ import im from "../assets/others/authentication2.png";
 import { useForm } from "react-hook-form";
 import { useAuth } from "./../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { useAxiosPublic } from "../Hooks/useAxiosPublic";
 export const Registration = () => {
   const { createUser, updateUser, logOut } = useAuth();
   const navigate = useNavigate();
-
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -20,12 +21,20 @@ export const Registration = () => {
       .then(() => {
         updateUser(data?.name)
           .then(() => {
-            Swal.fire({
-              text: "Registration Successfully and now you can login",
-              icon: "success",
-            });
-            reset();
-            logOut().then(() => navigate("/login"));
+            // userinfo set on database
+            axiosPublic
+              .post("/user", { name: data.name, email: data.email })
+              .then((res) => {
+                if (res.data.insertedId) {
+                  console.log("user added to the database");
+                  Swal.fire({
+                    text: "Registration Successfully and now you can login",
+                    icon: "success",
+                  });
+                  reset();
+                  logOut().then(() => navigate("/login"));
+                }
+              });
           })
           .catch((er) => alert(er));
       })

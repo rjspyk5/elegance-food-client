@@ -8,6 +8,7 @@ import { Registration } from "../Pages/Registration";
 import { ContactUs } from "../Pages/ContactUs";
 import { Cart } from "../Pages/Dashboard/Cart";
 import { Admin } from "../Pages/Dashboard/Admin";
+import { PrivateRoute } from "./../Component/PrivateRoute";
 
 export const Routing = createBrowserRouter([
   {
@@ -42,7 +43,11 @@ export const Routing = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Admin />,
+    element: (
+      <PrivateRoute>
+        <Admin />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "cart",
