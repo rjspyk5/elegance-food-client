@@ -9,6 +9,11 @@ import { ContactUs } from "../Pages/ContactUs";
 import { Cart } from "../Pages/Dashboard/Cart";
 import { Admin } from "../Pages/Dashboard/Admin";
 import { PrivateRoute } from "./../Component/PrivateRoute";
+import { AllUser } from "../Pages/Dashboard/AllUser";
+import { AdminHome } from "./../Pages/Dashboard/AdminHome";
+import { AddItem } from "../Pages/Dashboard/AddItem";
+import { ManageItem } from "../Pages/Dashboard/ManageItem";
+import { ManageBookings } from "./../Pages/Dashboard/ManageBookings";
 
 export const Routing = createBrowserRouter([
   {
@@ -52,6 +57,26 @@ export const Routing = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path: "users",
+        element: <AllUser />,
+      },
+      {
+        path: "adminHome",
+        element: <AdminHome />,
+      },
+      {
+        path: "additem",
+        element: <AddItem />,
+      },
+      {
+        path: "manageItem",
+        element: <ManageItem />,
+      },
+      {
+        path: "ManageBookings",
+        element: <ManageBookings />,
       },
     ],
   },

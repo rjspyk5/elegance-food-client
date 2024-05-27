@@ -1,76 +1,85 @@
 import { FaHome, FaShoppingCart } from "react-icons/fa";
-import { FaAddressBook, FaCalendar, FaList } from "react-icons/fa6";
+import { FaBook, FaList, FaUser, FaUtensils } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 export const Admin = () => {
+  // TODO: have to get isAdmin data from database
+  const isAdmin = true;
   return (
     <div className="flex">
       <div className="w-[20%] min-h-screen bg-yellow-500">
         <ul className="w-full">
-          <li className="w-full">
-            <NavLink
-              to="/dashboard/userHome"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-white bg-blue-300 flex items-center gap-3"
-                  : " gap-3 flex items-center"
-              }
-            >
-              <FaHome />
-              UserHome
-            </NavLink>
-          </li>
-          <li className="w-full">
-            <NavLink
-              to="/dashboard/reservation"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-white bg-blue-300 flex items-center gap-3"
-                  : " gap-3 flex items-center"
-              }
-            >
-              <FaCalendar />
-              Reservation
-            </NavLink>
-          </li>
-          <li className="w-full">
-            <NavLink
-              to="/dashboard/review"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-white bg-blue-300 flex items-center gap-3"
-                  : " gap-3 flex items-center"
-              }
-            >
-              <FaAddressBook />
-              Add a review
-            </NavLink>
-          </li>
-          <li className="w-full">
-            <NavLink
-              to="/dashboard/bookings"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-white bg-blue-300 flex items-center gap-3"
-                  : " gap-3 flex items-center"
-              }
-            >
-              <FaList />
-              My Bookings
-            </NavLink>
-          </li>
-          <li className="w-full">
-            <NavLink
-              to="/dashboard/cart"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-white bg-blue-300 flex items-center gap-3"
-                  : " gap-3 flex items-center"
-              }
-            >
-              <FaShoppingCart />
-              MyCart
-            </NavLink>
-          </li>
+          {isAdmin ? (
+            <>
+              {" "}
+              <li className="w-full">
+                <NavLink
+                  to="/dashboard/adminHome"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-white bg-blue-300 flex items-center gap-3"
+                      : " gap-3 flex items-center"
+                  }
+                >
+                  <FaHome />
+                  AdminHome
+                </NavLink>
+              </li>
+              <li className="w-full">
+                <NavLink
+                  to="/dashboard/additem"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-white bg-blue-300 flex items-center gap-3"
+                      : " gap-3 flex items-center"
+                  }
+                >
+                  <FaUtensils />
+                  Add Item
+                </NavLink>
+              </li>
+              <li className="w-full">
+                <NavLink
+                  to="/dashboard/manageItem"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-white bg-blue-300 flex items-center gap-3"
+                      : " gap-3 flex items-center"
+                  }
+                >
+                  <FaList />
+                  Manage Iteam
+                </NavLink>
+              </li>
+              <li className="w-full">
+                <NavLink
+                  to="/dashboard/manageBookings"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-white bg-blue-300 flex items-center gap-3"
+                      : " gap-3 flex items-center"
+                  }
+                >
+                  <FaBook />
+                  Manage Bookings
+                </NavLink>
+              </li>
+              <li className="w-full">
+                <NavLink
+                  to="/dashboard/users"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-white bg-blue-300 flex items-center gap-3"
+                      : " gap-3 flex items-center"
+                  }
+                >
+                  <FaUser />
+                  All Users
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <></>
+          )}
           <div className="divider"></div>
           <li className="w-full">
             <NavLink
