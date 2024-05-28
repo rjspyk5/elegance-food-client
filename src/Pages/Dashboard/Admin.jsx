@@ -1,10 +1,12 @@
 import { FaHome, FaShoppingCart } from "react-icons/fa";
 import { FaBook, FaList, FaUser, FaUtensils } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
+import { useAdminChecker } from "../../Hooks/useAdminChecker";
 export const Admin = () => {
   // TODO: have to get isAdmin data from database
 
-  const isAdmin = true;
+  const [isAdmin] = useAdminChecker();
+
   return (
     <div className="flex">
       <div className="w-[20%] min-h-screen bg-yellow-500">
