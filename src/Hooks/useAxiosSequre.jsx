@@ -10,13 +10,13 @@ const axiosSequre = axios.create({
 export const useAxiosSequre = () => {
   const { logOut } = useAuth();
   const navigate = useNavigate();
-  axios.interceptors.response.use(
-    function (response) {
+  axiosSequre.interceptors.response.use(
+    (response) => {
       return response;
     },
-    function (error) {
+    (error) => {
       if (error.response.status === 401 || error.response.status === 403) {
-        logOut().then(() => navigate("/"));
+        logOut().then(() => navigate("/login"));
       }
       return Promise.reject(error);
     }
