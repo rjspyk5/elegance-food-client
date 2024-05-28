@@ -1,4 +1,4 @@
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaUser } from "react-icons/fa";
 import { useLoadUser } from "../../Hooks/useLoadUser";
 import { useAxiosSequre } from "../../Hooks/useAxiosSequre";
 
@@ -10,6 +10,9 @@ export const AllUser = () => {
       refetch();
       console.log(res);
     });
+  };
+  const handleMakeAdmin = (id) => {
+    axiosSequre.patch(`/user/${id}`).then(() => refetch());
   };
   return (
     <div>
@@ -33,7 +36,15 @@ export const AllUser = () => {
                   <th>{idx + 1}</th>
                   <td>{el.displayName}</td>
                   <td>{el.email}</td>
-                  <td>Blue</td>
+                  <td>
+                    {el.role === "admin" ? (
+                      "Admin"
+                    ) : (
+                      <button onClick={() => handleMakeAdmin(el._id)}>
+                        <FaUser />
+                      </button>
+                    )}
+                  </td>
                   <td>
                     <button onClick={() => handleDelete(el._id)}>
                       <FaTrash />

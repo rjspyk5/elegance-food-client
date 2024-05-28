@@ -3,6 +3,7 @@ import { FaBook, FaList, FaUser, FaUtensils } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 export const Admin = () => {
   // TODO: have to get isAdmin data from database
+
   const isAdmin = true;
   return (
     <div className="flex">
