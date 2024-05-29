@@ -1,13 +1,25 @@
+import axios from "axios";
 import { useForm } from "react-hook-form";
 
 export const AddItem = () => {
+  const url = `https://api.imgbb.com/1/upload?key=${
+    import.meta.env.VITE_IMG_API
+  }`;
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    const imageFile = { image: data.image[0] };
+    const res = await axios.post(url, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    const image = res.data.data.display_url;
+  };
 
   return (
     <div>
