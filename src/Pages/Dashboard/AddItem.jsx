@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { useAxiosSequre } from "../../Hooks/useAxiosSequre";
 
 export const AddItem = () => {
   const url = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMG_API
   }`;
+  const axiosSequre = useAxiosSequre();
   const {
     register,
     reset,
@@ -19,6 +21,12 @@ export const AddItem = () => {
       },
     });
     const image = res.data.data.display_url;
+    data.image = image;
+    const result = await axiosSequre.post("/menu", data);
+    reset();
+    if (result.data.insertedId) {
+      alert("Add Iteam success fully");
+    }
   };
 
   return (
