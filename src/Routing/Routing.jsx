@@ -15,6 +15,7 @@ import { AddItem } from "../Pages/Dashboard/AddItem";
 import { ManageItem } from "../Pages/Dashboard/ManageItem";
 import { ManageBookings } from "./../Pages/Dashboard/ManageBookings";
 import { AdminPrivateRoute } from "../Pages/Dashboard/AdminPrivateRoute";
+import { EditItem } from "../Pages/Dashboard/EditItem";
 
 export const Routing = createBrowserRouter([
   {
@@ -97,6 +98,14 @@ export const Routing = createBrowserRouter([
         element: (
           <AdminPrivateRoute>
             <ManageBookings />
+          </AdminPrivateRoute>
+        ),
+      },
+      {
+        path: "edititem/:id",
+        element: (
+          <AdminPrivateRoute>
+            <EditItem />
           </AdminPrivateRoute>
         ),
       },

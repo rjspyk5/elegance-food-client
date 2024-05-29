@@ -2,9 +2,11 @@ import React from "react";
 import { useMenu } from "../../Hooks/useMenu";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 export const ManageItem = () => {
   const [menu, loading] = useMenu();
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -40,7 +42,10 @@ export const ManageItem = () => {
                   <td>{el.name}</td>
                   <td>{el.price}</td>
                   <th>
-                    <button className="btn btn-ghost btn-xs">
+                    <button
+                      onClick={() => navigate(`/dashboard/edititem/${el._id}`)}
+                      className="btn btn-ghost btn-xs"
+                    >
                       <FaEdit />
                     </button>
                   </th>
