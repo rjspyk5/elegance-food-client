@@ -50,9 +50,10 @@ export const Routing = createBrowserRouter([
   {
     path: "dashboard",
     element: (
-      <AdminPrivateRoute>
+      <PrivateRoute>
+        {" "}
         <Admin />
-      </AdminPrivateRoute>
+      </PrivateRoute>
     ),
     children: [
       {
@@ -61,23 +62,43 @@ export const Routing = createBrowserRouter([
       },
       {
         path: "users",
-        element: <AllUser />,
+        element: (
+          <AdminPrivateRoute>
+            <AllUser />
+          </AdminPrivateRoute>
+        ),
       },
       {
         path: "adminHome",
-        element: <AdminHome />,
+        element: (
+          <AdminPrivateRoute>
+            <AdminHome />
+          </AdminPrivateRoute>
+        ),
       },
       {
         path: "additem",
-        element: <AddItem />,
+        element: (
+          <AdminPrivateRoute>
+            <AddItem />
+          </AdminPrivateRoute>
+        ),
       },
       {
         path: "manageItem",
-        element: <ManageItem />,
+        element: (
+          <AdminPrivateRoute>
+            <ManageItem />
+          </AdminPrivateRoute>
+        ),
       },
       {
         path: "ManageBookings",
-        element: <ManageBookings />,
+        element: (
+          <AdminPrivateRoute>
+            <ManageBookings />
+          </AdminPrivateRoute>
+        ),
       },
     ],
   },
