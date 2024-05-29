@@ -14,6 +14,7 @@ import { AdminHome } from "./../Pages/Dashboard/AdminHome";
 import { AddItem } from "../Pages/Dashboard/AddItem";
 import { ManageItem } from "../Pages/Dashboard/ManageItem";
 import { ManageBookings } from "./../Pages/Dashboard/ManageBookings";
+import { AdminPrivateRoute } from "../Pages/Dashboard/AdminPrivateRoute";
 
 export const Routing = createBrowserRouter([
   {
@@ -49,9 +50,9 @@ export const Routing = createBrowserRouter([
   {
     path: "dashboard",
     element: (
-      <PrivateRoute>
+      <AdminPrivateRoute>
         <Admin />
-      </PrivateRoute>
+      </AdminPrivateRoute>
     ),
     children: [
       {
