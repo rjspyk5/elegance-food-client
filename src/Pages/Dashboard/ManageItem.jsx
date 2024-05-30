@@ -1,12 +1,19 @@
-import React from "react";
 import { useMenu } from "../../Hooks/useMenu";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { useAxiosSequre } from "../../Hooks/useAxiosSequre";
 
 export const ManageItem = () => {
-  const [menu, loading] = useMenu();
+  const [menu, loading, refetch] = useMenu();
+  const axiosSequre = useAxiosSequre();
   const navigate = useNavigate();
+  const handleDelete = async (id) => {
+    const result = await axiosSequre.delete(`/menu/${id}`);
+    if (result.data.acknowledged) {
+      refetch();
+    }
+  };
 
   return (
     <div>
@@ -50,7 +57,10 @@ export const ManageItem = () => {
                     </button>
                   </th>
                   <th>
-                    <button className="btn btn-ghost btn-xs">
+                    <button
+                      onClick={() => handleDelete(el._id)}
+                      className="btn btn-ghost btn-xs"
+                    >
                       <FaTrash />
                     </button>
                   </th>

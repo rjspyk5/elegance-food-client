@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useAxiosSequre } from "../../Hooks/useAxiosSequre";
-import { useLoaderData } from "react-router-dom";
+import { Navigate, useLoaderData, useNavigate } from "react-router-dom";
 
 export const EditItem = () => {
   const axiosSequre = useAxiosSequre();
+  const navigate = useNavigate();
   const { data } = useLoaderData();
   const url = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMG_API
@@ -32,6 +33,7 @@ export const EditItem = () => {
     const result = await axiosSequre.patch(`/menu/${data._id}`, dataum);
     if (result.data.acknowledged) {
       alert("Successfully Update");
+      navigate("/dashboard/manageItem");
     }
   };
   return (
