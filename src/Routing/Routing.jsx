@@ -16,6 +16,7 @@ import { ManageItem } from "../Pages/Dashboard/ManageItem";
 import { ManageBookings } from "./../Pages/Dashboard/ManageBookings";
 import { AdminPrivateRoute } from "../Pages/Dashboard/AdminPrivateRoute";
 import { EditItem } from "../Pages/Dashboard/EditItem";
+import axios from "axios";
 
 export const Routing = createBrowserRouter([
   {
@@ -52,7 +53,6 @@ export const Routing = createBrowserRouter([
     path: "dashboard",
     element: (
       <PrivateRoute>
-        {" "}
         <Admin />
       </PrivateRoute>
     ),
@@ -108,6 +108,8 @@ export const Routing = createBrowserRouter([
             <EditItem />
           </AdminPrivateRoute>
         ),
+        loader: ({ params }) =>
+          axios.get(`http://localhost:5000/menu/${params.id}`),
       },
     ],
   },
