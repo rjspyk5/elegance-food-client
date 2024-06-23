@@ -17,6 +17,7 @@ import { ManageBookings } from "./../Pages/Dashboard/ManageBookings";
 import { AdminPrivateRoute } from "../Pages/Dashboard/AdminPrivateRoute";
 import { EditItem } from "../Pages/Dashboard/EditItem";
 import axios from "axios";
+import { Payment } from "../Pages/Dashboard/Payment/Payment";
 
 export const Routing = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ export const Routing = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path: "payment",
+        element: <Payment />,
       },
       {
         path: "users",
